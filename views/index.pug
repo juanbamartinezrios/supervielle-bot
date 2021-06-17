@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1.tittle= titleGraph
+  div.row
+    div.col-lg-3.col-md-3.col-sm-3
+      label.subtittle Seleccione una fecha: 
+      input#startDate
+    div.col-lg-9.col-md-9.col-sm-9
+      p
+      a(id='link', title='Index').title FILTRAR
+      p
+      a(id='report', href='/reports', title='Report').title REPORTES (LOG)
+      
+  canvas#myChart
+  
+  script.
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [#{labels}],
+            datasets: [{
+                label: '#{leyendOff}',
+                data: [#{dataOff}],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255,99,132,1)',
+            }]
+        },
+        options: !{JSON.stringify(options)}
+    });
+
+  script(src='/scripts/commons/index.js')

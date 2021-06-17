@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1.tittle= titleGraph
+  if(!documents)
+    div.row
+      div.col-lg-5.col-md-5.col-sm-5
+        label.subtittle Fecha Inicio: 
+        input#startDate
+      div.col-lg-5.col-md-5.col-sm-5
+        label.subtittle Fecha Fin: 
+        input#endDate
+      div.col-lg-2.col-md-2.col-sm-2
+        a(id='link', title='Log Results').title Buscar
+  else
+    a(href='/reports', title='Volver a Filtros').title Volver
+    p
+    div#fila.row.headDiv
+      div#service.col-lg-1.col-md-1.col-sm-2 WS
+      div#status.col-lg-1.col-md-1.col-sm-2 Status
+      div#desc.col-lg-5.col-md-5.col-sm-4 Description
+      div#time.col-lg-5.col-md-5.col-sm-4 Time
+
+    each item in documents
+      div#fila.row.contentDiv
+        div#service.col-lg-1.col-md-1.col-sm-2= item.service
+        div#status.col-lg-1.col-md-1.col-sm-2= item.status
+        div#desc.col-lg-5.col-md-5.col-sm-4= item.description
+        div#time.col-lg-5.col-md-5.col-sm-4= item.time
+
+  script(src='/scripts/commons/reports.js')
